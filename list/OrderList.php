@@ -13,7 +13,7 @@ namespace pers1307\OrderList;
 
 class OrderList
 {
-    public function getConfig($place)
+    public static function getConfig($place)
     {
         return [
             'module_name' => 'list',
@@ -55,7 +55,7 @@ class OrderList
         ];
     }
 
-    public function getInsertSql($title, $msg)
+    public static function getInsertSql($title, $msg)
     {
         return "
             INSERT INTO mp_list(`title`,`text`)
