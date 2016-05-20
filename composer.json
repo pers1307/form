@@ -22,8 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "pers1307\\form\\": "src",
-            "pers1307\\OrderList\\": "list"
+            "pers1307\\form\\": "src"
         }
     },
     "autoload-dev": {

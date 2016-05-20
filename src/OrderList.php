@@ -9,7 +9,7 @@
  * @link        http://www.mediasite.ru/
  */
 
-namespace pers1307\OrderList;
+namespace pers1307\form;
 
 class OrderList
 {
