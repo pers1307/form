@@ -30,8 +30,7 @@ class ApiCall extends MSBaseApi
                     );
                 }
 
-                $name = htmlspecialchars($_POST['name']);
-                $data['name'] = $name;
+                $data['name'] = htmlspecialchars($_POST['name']);
 
                 if (!isset($_POST['phone'])) {
                     throw new Exception(
@@ -39,8 +38,7 @@ class ApiCall extends MSBaseApi
                     );
                 }
 
-                $phone = htmlspecialchars($_POST['phone']);
-                $data['phone'] = $phone;
+                $data['phone'] = htmlspecialchars($_POST['phone']);
 
                 if (!isset($_POST['email'])) {
                     throw new Exception(
@@ -48,8 +46,15 @@ class ApiCall extends MSBaseApi
                     );
                 }
 
-                $email = htmlspecialchars($_POST['email']);
-                $data['email'] = $email;
+                $data['email'] = htmlspecialchars($_POST['email']);
+
+                if (!isset($_POST['comment'])) {
+                    throw new Exception(
+                        'comment'
+                    );
+                }
+
+                $data['comment'] = htmlspecialchars($_POST['comment']);
 
                 if (!isset($_POST['address'])) {
                     throw new Exception(
@@ -67,10 +72,13 @@ class ApiCall extends MSBaseApi
 
                 // Валидация
                 $v = new Validator([
-                    'name' => $name,
-                    'phone' => $phone,
-                    'email' => $email,
+                    'name'    => $data['name'],
+                    'phone'   => $data['phone'],
+                    'email'   => $data['email'],
+                    'comment' => $data['comment'],
                 ]);
+
+                $v->rule('required', 'comment')->message('comment!');
 
                 $v->rule('required', 'name')->message('name!');
                 $v->rule('regex', 'name', '/^([a-zа-я\s\-]+)$/iu')->message('name!!');

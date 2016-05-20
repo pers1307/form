@@ -43,7 +43,7 @@ $ php composer.phar require --prefer-dist pers1307/form "dev-master"
                     </label>
                     <label class="labelBlock">
                         <span>Комментарий <i>*</i></span>
-                        <textarea name="comment"></textarea>
+                        <textarea name="comment" style="resize: none"></textarea>
                     </label>
                     <input type="text" class="address" name="address">
                     <button class="button">Заказать</button>

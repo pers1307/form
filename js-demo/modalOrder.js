@@ -189,21 +189,21 @@ $(document).ready(function(){
                     });
 
                     // Проверка на ошибки первого уровня у textarea
-                    //textareasName.forEach(function(item, i) {
-                    //    $(form + postFix + " textarea[name='" + item + "']").removeClass(error);
-                    //
-                    //    if (response.data.error[item] != 'undefined') {
-                    //        if (response.data.error[item] == item + '!') {
-                    //            $(form + postFix + " textarea[name='" + item + "']").addClass(error);
-                    //            $(form + postFix + " textarea[name='" + item + "']").after(errorLvl1);
-                    //        }
-                    //
-                    //        if (response.data.error[item] == item + '!!') {
-                    //            $(form + postFix + " textarea[name='" + item + "']").addClass(error);
-                    //            $(form + postFix + " textarea[name='" + item + "']").after(errorLvl2[i]);
-                    //        }
-                    //    }
-                    //});
+                    textareasName.forEach(function(item, i) {
+                        $(form + postFix + " textarea[name='" + item + "']").removeClass(error);
+
+                        if (response.data.error[item] != 'undefined') {
+                            if (response.data.error[item] == item + '!') {
+                                $(form + postFix + " textarea[name='" + item + "']").addClass(error);
+                                $(form + postFix + " textarea[name='" + item + "']").after(errorLvl1);
+                            }
+
+                            if (response.data.error[item] == item + '!!') {
+                                $(form + postFix + " textarea[name='" + item + "']").addClass(error);
+                                $(form + postFix + " textarea[name='" + item + "']").after(errorLvl2[i]);
+                            }
+                        }
+                    });
 
                     /**
                      * Кастомные действия для данного проекта
