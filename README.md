@@ -54,6 +54,16 @@ $ php composer.phar require --prefer-dist pers1307/form "dev-master"
     </div>
 ```
 
+Подключение модуля с добавлением заявки в базу
+1. Копирование стандартного модуля с новым именем: list.
+2. Вставляем код в модуль:
+``` php
+    
+```
+3. В базе переназначить полю date тип timestamp прописать current_timestamp.
+
+
+
 ## Автор
 
 - [Pereskokov Yurii (pers1307)](https://github.com/pers1307)
