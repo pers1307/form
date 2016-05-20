@@ -90,12 +90,16 @@ class ApiCall extends MSBaseApi
                 $v->rule('email', 'email')->message('email!!');
 
                 if($v->validate()) {
+
+                    $msg   = template('email/call', $data);
+                    $title = "Вопрос с сайта " . DOMAIN;
+
                     $mail = new SendMail();
                     $mail->init();
                     $mail->setEncoding("utf8");
                     $mail->setEncType("base64");
-                    $mail->setSubject("Заявка на обратный звонок " . DOMAIN);
-                    $mail->setMessage(template('email/call', $data));
+                    $mail->setSubject($title);
+                    $mail->setMessage($msg);
                     $mail->setFrom("noreply@" . DOMAIN, "eko");
                     $emails = MSCore::db()->getCol('SELECT `mail` FROM `'.PRFX.'mailer`');
 
@@ -103,6 +107,12 @@ class ApiCall extends MSBaseApi
                         $mail->setTo($email);
                         $mail->send();
                     }
+
+                    $sql = "
+                        INSERT INTO mp_list(`title`,`text`)
+                        VALUES('" . $title . "','" . $msg . "');
+                    ";
+                    MSCore::db()->execute($sql);
 
                     $this->addData(['succes' => 'Ok']);
                     $this->successAction();
