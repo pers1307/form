@@ -55,12 +55,14 @@ $ php composer.phar require --prefer-dist pers1307/form "dev-master"
 ```
 
 Подключение модуля с добавлением заявки в базу
-1. Копирование стандартного модуля с новым именем: list.
-2. Вставляем код в модуль:
+ * Копирование стандартного модуля с новым именем: list.
+ * Вставляем код в модуль:
 ``` php
-    
+    return pers1307\form\OrderList::getConfig(ROOT_PLACE);
 ```
-3. В базе переназначить полю date тип timestamp прописать current_timestamp.
+ * Устанавливаем модуль.
+ * В базе переназначить полю date тип timestamp прописать current_timestamp.
+ * Используем Api модуль
 
 
 
