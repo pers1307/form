@@ -140,9 +140,11 @@ $ php composer.phar require --prefer-dist pers1307/form "dev-master"
     Подключение модуля с добавлением заявки в базу
      * Копирование стандартного модуля с новым именем: list.
      * Вставляем код в модуль:
+
         ``` php
             return pers1307\form\OrderList::getConfig(ROOT_PLACE);
         ```
+
      * Устанавливаем модуль.
      * Бросаем sql'ину в базу:
 
