@@ -171,6 +171,7 @@ function ModalWindow() {
             e.preventDefault();
 
             var content = $(self.classWithModal + self.withModalPostFix).html();
+
             self.popUp(content);
 
             if (self.withFile == true) {
@@ -200,6 +201,7 @@ function ModalWindow() {
 
         $('.modal-window-wrap').remove();
 
+        this.resetTextAreaError();
         this.resetInputError();
     };
 
@@ -213,11 +215,11 @@ function ModalWindow() {
 
         $('body').append(
             '<div class="modal-window-wrap formModal">' +
-                '<div class="modal-window">' +
-                    '<div class="modal-window-body">' +
-                        content +
-                    '</div>' +
-                '</div>' +
+            '<div class="modal-window">' +
+            '<div class="modal-window-body">' +
+            content +
+            '</div>' +
+            '</div>' +
             '</div>'
         );
 
@@ -390,6 +392,19 @@ function ModalWindow() {
     };
 
     /**
+     * Удаление ошибок на input'ах
+     */
+    this.resetTextAreaError = function () {
+
+        this.textareasName.forEach(function(item, i) {
+
+            var $object = $(self.form + self.formPostFix + " textarea[name='" + item + "']");
+
+            self.resetErrorClass($object);
+        });
+    };
+
+    /**
      * Удаление подсвечивания элемента и подписи под ним
      * @param $object
      */
@@ -497,6 +512,7 @@ function ModalWindow() {
             $(document).on('focus', self.form + self.formPostFix + " input[name='" + item + "']", function(e) {
 
                 if ($(this).hasClass('error')) {
+
                     $(this).removeClass('error');
                     $(this).next().remove();
                 }
@@ -508,6 +524,7 @@ function ModalWindow() {
             $(document).on('focus', self.form + self.formPostFix + " textarea[name='" + item + "']", function(e) {
 
                 if ($(this).hasClass('error')) {
+
                     $(this).removeClass('error');
                     $(this).next().remove();
                 }
