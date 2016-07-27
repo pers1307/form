@@ -111,7 +111,7 @@ class ApiOrder extends MSBaseApi
 
                     if (isset($path)) {
 
-                        $files   = $path;
+                        $files   = str_replace('\\', '/', $path);
                         $from    = "noreply@" . DOMAIN;
 
                         // Помещаем в базу
@@ -181,16 +181,23 @@ class ApiOrder extends MSBaseApi
 
             $MSFiles = new MSFiles();
 
-            $tmpDir = TMP_DIR . DS . 'tmp_file' . DS;
+            $tempFileDir = FILES_DIR . DS . 'tmp_files' . DS;
+
+            if (!file_exists($tempFileDir)) {
+
+                mkdir($tempFileDir);
+            }
 
             if (!empty($_POST['id'])) {
+
                 $type = $_POST['id'];
             } else {
+
                 $this->errorAction(1001, 'Custom system error', ['error' => 'noType']);
             }
 
             $result = $MSFiles->uploadFile(
-                $tmpDir,
+                $tempFileDir,
                 [
                     'allowedExtensions' => ['jpg', 'gif', 'png', 'jpeg', 'doc', 'docx', 'xls', 'xlsx'],
                     'sizeLimit' => 5 * 1024 * 1024,
@@ -200,11 +207,13 @@ class ApiOrder extends MSBaseApi
             );
 
             if ($result['success']) {
+
                 $_SESSION['uploaded'][$type] = [
                     'name'      => $result['uploadName'],
-                    'directory' => $tmpDir . $result['uploadName']
+                    'directory' => $tempFileDir . $result['uploadName']
                 ];
             } else {
+
                 $this->errorAction(1001, 'Custom system error', ['error' => 'noCopy']);
             }
 
@@ -228,6 +237,7 @@ class ApiOrder extends MSBaseApi
             if (file_exists($path)) {
                 unlink($path);
             }
+
             unset($_SESSION['uploaded'][$type]);
 
             $this->addData(['succes' => 'Ok']);

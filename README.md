@@ -65,13 +65,13 @@ $ php composer.phar require --prefer-dist pers1307/form "dev-master"
                         <textarea name="comment" style="resize: none"></textarea>
                     </label>
 
-                    <div class="fileUpload">
+                    <div class="fileUpload js-fileUploadArea">
                         <label class="fileUploadButton">
                             <input name="files">
                             Прикрепить файл
                         </label>
 
-                        <div class="fileUploadList">
+                        <div class="fileUploadList js-fileUploadList">
                         </div>
                     </div>
 
